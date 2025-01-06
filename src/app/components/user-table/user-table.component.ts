@@ -9,12 +9,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-user-table',
-  standalone: true,
-  imports: [ MatButtonModule, MatDividerModule, MatIconModule
-  ],
-  templateUrl: './user-table.component.html',
-  styleUrl: './user-table.component.css'
+    selector: 'app-user-table',
+    imports: [MatButtonModule, MatDividerModule, MatIconModule
+    ],
+    templateUrl: './user-table.component.html',
+    styleUrl: './user-table.component.css'
 })
 export class UserTableComponent {
 

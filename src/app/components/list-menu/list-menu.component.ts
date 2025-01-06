@@ -3,11 +3,10 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MenuItems } from 'src/app/shared/interfaces/menu-items';
 
 @Component({
-  selector: 'app-list-menu',
-  standalone: true,
-  imports: [RouterLink, RouterLinkActive],
-  templateUrl: './list-menu.component.html',
-  styleUrl: './list-menu.component.css'
+    selector: 'app-list-menu',
+    imports: [RouterLink, RouterLinkActive],
+    templateUrl: './list-menu.component.html',
+    styleUrl: './list-menu.component.css'
 })
 export class ListMenuComponent {
   menu: MenuItems[] = [

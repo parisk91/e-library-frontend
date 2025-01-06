@@ -12,11 +12,10 @@ import { CommonModule } from '@angular/common';
 import { response } from 'express';
 
 @Component({
-  selector: 'app-user-registration',
-  standalone: true,
-  imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatButtonModule, FormsModule, MatSelectModule, RouterLink, MatFormFieldModule, CommonModule],
-  templateUrl: './user-registration.component.html',
-  styleUrl: './user-registration.component.css'
+    selector: 'app-user-registration',
+    imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatButtonModule, FormsModule, MatSelectModule, RouterLink, MatFormFieldModule, CommonModule],
+    templateUrl: './user-registration.component.html',
+    styleUrl: './user-registration.component.css'
 })
 export class UserRegistrationComponent {
   userService = inject(UserService);

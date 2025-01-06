@@ -8,11 +8,10 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { ListMenuComponent } from './components/list-menu/list-menu.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [MatIconModule, MatToolbarModule, UserRegistrationComponent, UserLoginComponent, NavbarComponent, RouterOutlet, RouterLink, ListMenuComponent ],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [MatIconModule, MatToolbarModule, UserRegistrationComponent, UserLoginComponent, NavbarComponent, RouterOutlet, RouterLink, ListMenuComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'e-library-frontend';

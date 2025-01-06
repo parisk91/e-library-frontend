@@ -6,11 +6,10 @@ import { Credentials } from 'src/app/shared/interfaces/user';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'app-user-login',
-  standalone: true,
-  imports: [ ReactiveFormsModule, RouterLink ],
-  templateUrl: './user-login.component.html',
-  styleUrl: './user-login.component.css'
+    selector: 'app-user-login',
+    imports: [ReactiveFormsModule, RouterLink],
+    templateUrl: './user-login.component.html',
+    styleUrl: './user-login.component.css'
 })
 export class UserLoginComponent {
   userService = inject(UserService);

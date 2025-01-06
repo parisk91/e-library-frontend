@@ -7,11 +7,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AuthorService } from 'src/app/shared/services/author.service';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-author-table',
-  standalone: true,
-  imports: [MatButtonModule, MatDividerModule, MatIconModule],
-  templateUrl: './author-table.component.html',
-  styleUrl: './author-table.component.css'
+    selector: 'app-author-table',
+    imports: [MatButtonModule, MatDividerModule, MatIconModule],
+    templateUrl: './author-table.component.html',
+    styleUrl: './author-table.component.css'
 })
 export class AuthorTableComponent {
   authorService = inject(AuthorService);
