@@ -1,0 +1,34 @@
+@if (!authors.length) {
+    <div class="alert alert-danger text-center">No author found!</div>
+    <button mat-flat-button role="button" color="primary" (click)="insertAuthor()">Insert new author</button>
+    <button mat-flat-button role="button" color="primary" (click)="goBack()">Back</button>
+  } @else {
+    <table class="table table-bordered">
+      <caption class="caption-top fw-bold bg-primary text-light text-center">
+        Authors
+      </caption>
+      @for (author of authors; track author) {
+        <tr>
+          <td class="fw-semibold text-end">Id:</td>
+          <td class="ps-2">{{ author.id }}</td>
+          <td class="fw-semibold text-end">Firstname:</td>
+          <td class="ps-2">{{ author.firstname }}</td>
+          <td class="fw-semibold text-end">Lastname:</td>
+          <td class="ps-2">{{ author.lastname }}</td>
+          <td class="fw-semibold text-end">Biography:</td>
+          <td class="ps-2">{{ author.biography }}</td>
+          <td>
+            <button mat-flat-button role="button" color="primary" (click)="deleteAuthor(author)">Delete</button>
+          </td>
+          <td>
+            <button mat-flat-button role="button" color="primary" (click)="updateAuthor(author)">Update</button>
+          </td>
+          <td>
+            <button mat-flat-button role="button" color="primary" (click)="getBooks(author)">Courses</button>
+          </td>
+        </tr>
+      }
+    </table>
+    <button mat-flat-button role="button" color="primary" (click)="insertAuthor()">Insert new author</button>
+    <button mat-flat-button role="button" color="primary" (click)="goBack()">Back</button>
+  }
