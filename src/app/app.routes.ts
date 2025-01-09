@@ -10,7 +10,6 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { ListMenuComponent } from './components/list-menu/list-menu.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { AuthorTableComponent } from './components/author-table/author-table.component';
-import { BookService } from './shared/services/book.service';
 import { BookTableComponent } from './components/book-table/book-table.component';
 
 export const routes: Routes = [

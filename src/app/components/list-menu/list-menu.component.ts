@@ -4,6 +4,7 @@ import { MenuItems } from 'src/app/shared/interfaces/menu-items';
 
 @Component({
     selector: 'app-list-menu',
+    standalone: true,
     imports: [RouterLink, RouterLinkActive],
     templateUrl: './list-menu.component.html',
     styleUrl: './list-menu.component.css'

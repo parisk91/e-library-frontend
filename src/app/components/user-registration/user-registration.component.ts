@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { User } from 'src/app/shared/interfaces/user';
@@ -9,11 +9,13 @@ import { Router, RouterLink } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Role } from 'src/app/shared/interfaces/role';
 import { CommonModule } from '@angular/common';
-import { response } from 'express';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
 
 @Component({
     selector: 'app-user-registration',
-    imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatButtonModule, FormsModule, MatSelectModule, RouterLink, MatFormFieldModule, CommonModule],
+    standalone: true,
+    imports: [ReactiveFormsModule, MatButtonModule, MatInputModule, MatButtonModule, FormsModule, MatSelectModule, MatFormFieldModule, CommonModule],
     templateUrl: './user-registration.component.html',
     styleUrl: './user-registration.component.css'
 })
@@ -112,5 +114,4 @@ export class UserRegistrationComponent {
       })
     }  
   }
-
 }

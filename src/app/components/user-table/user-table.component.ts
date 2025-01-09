@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-user-table',
+    standalone: true,
     imports: [MatButtonModule, MatDividerModule, MatIconModule
     ],
     templateUrl: './user-table.component.html',
@@ -56,6 +57,6 @@ export class UserTableComponent {
   }
    
   insertUser() {
-    this.router.navigate(['insert-user']);
+    this.router.navigate(['/insert-user']);
   }
 }

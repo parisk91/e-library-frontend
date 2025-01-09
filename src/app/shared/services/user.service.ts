@@ -14,6 +14,7 @@ const API_URL = `${environment.apiURL}/users`;
 export class UserService {
   http: HttpClient = inject(HttpClient);
   router: Router = inject(Router);
+
   userService: UserService = inject(UserService)
   bookService: BookService = inject(BookService)
 
@@ -29,7 +30,6 @@ export class UserService {
           role: decodedToken.role,
         });
 
-        // Redirect based on role if token is valid and user is set
         this.redirectUser(decodedToken.role);
       } catch (error) {
         console.error('Token Decoding Error:', error);
@@ -37,7 +37,6 @@ export class UserService {
       }
     }
 
-    // Log user status changes
     effect(() => {
       const currentUser = this.user();
       if (!currentUser) {
@@ -50,9 +49,9 @@ export class UserService {
 
   private redirectUser(role: string) {
     if (role === 'ADMIN') {
-      this.router.navigate(['admin-profile']);
+      this.router.navigate(['admin-dashboard']);
     } else if (role === 'USER') {
-      this.router.navigate(['user-profile']);
+      this.router.navigate(['user-dashboard']);
     } else {
       this.router.navigate(['login']);
     }
@@ -106,19 +105,19 @@ export class UserService {
     return this.http.get<User[]>(`${API_URL}/users/`, { headers });
   }
 
-  getUserById(id: number) {
+  getUserById(userId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<User>(`${API_URL}/users/by-id/${id}`, { headers });
+    return this.http.get<User>(`${API_URL}/${userId}`, { headers });
   }
 
   getUserByUsername(username: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<User>(`${API_URL}/profile`, { headers });
+    return this.http.get<User>(`${API_URL}/${username}`, { headers });
   }
 
   getUserByEmail(email: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<User>(`${API_URL}/email`, { headers });
+    return this.http.get<User>(`${API_URL}/${email}`, { headers });
   }
 
   getRole() {
@@ -147,7 +146,7 @@ export class UserService {
     return null; 
   }
 
-  async getUserId(): Promise<number> {
+  /* async getUserId(): Promise<number> {
     const token = localStorage.getItem('access_token');
     if (token) {
       const decodedToken = jwtDecode<{ sub: string, role: string }>(token);
@@ -165,5 +164,5 @@ export class UserService {
       }
     }
     return null;
- }
+ } */
 }

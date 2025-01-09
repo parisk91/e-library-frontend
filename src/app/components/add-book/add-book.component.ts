@@ -1,11 +1,5 @@
 import { Component, inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-  FormsModule
-} from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,6 +9,7 @@ import { Book } from 'src/app/shared/interfaces/book';
 import { User } from 'src/app/shared/interfaces/user';
 import { BookService } from 'src/app/shared/services/book.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-book',
@@ -23,8 +18,7 @@ import { UserService } from 'src/app/shared/services/user.service';
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
-    FormsModule,
-    RouterLink],
+    FormsModule],
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.css'
 })

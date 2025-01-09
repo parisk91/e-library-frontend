@@ -14,5 +14,4 @@ export interface Credentials {
 export interface LoggedInUser {
     username: string;
     role: string;
-    //να δω τι στέλνει πίσω το backend όταν ο χρήστης γίνεται login
 }
