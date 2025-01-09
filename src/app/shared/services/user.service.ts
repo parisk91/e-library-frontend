@@ -15,7 +15,6 @@ export class UserService {
   http: HttpClient = inject(HttpClient);
   router: Router = inject(Router);
 
-  userService: UserService = inject(UserService)
   bookService: BookService = inject(BookService)
 
   user = signal<LoggedInUser | null>(null);
