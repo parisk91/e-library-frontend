@@ -1,0 +1,24 @@
+@if (!books) {
+    <div class="alert alert-danger text-center">No book found!</div>
+    <button mat-flat-button role="button" color="primary" (click)="addBook(author)">Add Book </button>
+    <button mat-flat-button role="button" color="primary" (click)="goBack()">Back</button>
+  } @else {
+    <table class="table table-bordered">
+      <caption class="caption-top fw-bold bg-primary text-light text-center">
+         Books 
+      </caption>
+      @for (book of books; track book) {
+        <tr>
+          <td class="fw-semibold text-end">Id:</td>
+          <td class="ps-2">{{ book.id }}</td>
+          <td class="fw-semibold text-end">Book:</td>
+          <td class="ps-2">{{ book.title }}</td>
+          <td>
+            <button mat-flat-button role="button" color="primary" (click)="removeBook(book)">Remove</button>
+          </td>
+        </tr>
+      }
+    </table>
+    <button mat-flat-button role="button" color="primary" (click)="addBook(author)">Add Book</button>
+    <button mat-flat-button role="button" color="primary" (click)="goBack()">Back</button>
+  }

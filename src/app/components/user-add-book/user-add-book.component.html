@@ -4,9 +4,9 @@
     [formGroup]="form"
     class="d-flex flex-column">
     <mat-form-field>
-        <mat-label>Course</mat-label>
+        <mat-label>Book</mat-label>
         <mat-select
-        formControlName="course">
+        formControlName="book">
           @for (book of books; track book) {
             <mat-option [value]="book.id">{{book.title}}</mat-option>
           }

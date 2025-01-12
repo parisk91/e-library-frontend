@@ -1,0 +1,33 @@
+<form 
+    [formGroup]="form"
+    class="d-flex flex-column">
+    <mat-form-field>
+        <mat-label>Firstname</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="firstname" placeholder="Enter teacher firstname"/>
+        @if (form.get("firstname").invalid && form.get("firstname").touched) {
+          <mat-error>Firstname is required</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Lastname</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="lastname" placeholder="Enter teacher lastname"/>
+        @if (form.get("lastname").invalid && form.get("lastname").touched) {
+          <mat-error>Lastname is required</mat-error>
+        }
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Biography</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="biography" placeholder="Enter author biography"/>
+    </mat-form-field>
+</form>
+<button mat-flat-button role="button" color="primary" class="d-inline" (click)="insertAuthor()">Insert</button>
+<button mat-flat-button role="button" color="primary" class="d-inline m-lg-2" (click)="goBack()">Back</button>

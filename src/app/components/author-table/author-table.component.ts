@@ -31,8 +31,8 @@ export class AuthorTableComponent {
     });
   }
 
-  deleteAuthor(author: Author) {
-    this.authorService.deleteAuthor(author).subscribe({
+  deleteAuthor(authorId: number) {
+    this.authorService.deleteAuthor(authorId).subscribe({
       next: () => {
         this.authors = this.authors.filter(teacher => teacher !== teacher);
         this.ngOnInit();

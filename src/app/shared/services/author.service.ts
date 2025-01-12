@@ -6,7 +6,7 @@ import { Author } from '../interfaces/author';
 import { environment } from 'src/environments/environment';
 import { Book } from '../interfaces/book';
 
-const API_URL = `${environment.apiURL}/authors/`;
+const API_URL = `${environment.apiURL}/authors`;
 
 @Injectable({
   providedIn: 'root'
@@ -16,50 +16,52 @@ export class AuthorService {
   private router: Router = inject(Router)
   bookService = inject(BookService);
 
-
   constructor() { }
 
   getAuthors() {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<Author[]>(`${API_URL}/authors/`, { headers });
+    return this.http.get<Author[]>(`${API_URL}`, { headers });
   }
 
   getAuthorById(authorId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<Author>(`${API_URL}teachers/${authorId}`, { headers });
+    return this.http.get<Author>(`${API_URL}/${authorId}`, { headers });
+  }
+
+  getAuthorByLastname(lastname: string) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
+    return this.http.get<Author>(`${API_URL}/${lastname}`, { headers });
   }
 
   addAuthor(author: Author) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.post<Author>(`${API_URL}authors/`, author, { headers });
+    return this.http.post<Author>(`${API_URL}`, author, { headers });
   }
 
   updateAuthor(author: Author) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     const authorId = author.id;
-    return this.http.put<Author>(`${API_URL}/authors/${authorId}`, author, { headers });
+    return this.http.put<Author>(`${API_URL}/${authorId}`, author, { headers });
   }
 
-  deleteAuthor(author: Author) {
+  deleteAuthor(authorId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    const authorId = author.id
-    return this.http.delete<Author>(`${API_URL}/authors/${authorId}`, { headers });
+    return this.http.delete<Author>(`${API_URL}/${authorId}`, { headers });
   }
 
-  getBooks(authorId: number) {
+  addBookToAuthor(authorId: number, bookId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<Book[]>(`${API_URL}/books/authors/${authorId}`,  { headers });
+    const book = this.bookService.getBookById(bookId);
+    return this.http.put<Author>(`${API_URL}/${authorId}/books/${bookId}`, book, { headers });
   }
 
-  /* addBook(authorId: number, bookId: number) {
+  removeBookFromAuthor(authorId: number, bookId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    const course = this.courseService.getCourseById(courseId);
-    return this.http.put<Teacher>(`${API_URL}teachers/${teacherId}/courses/${courseId}`,course, { headers });
+    return this.http.delete<Author>(`${API_URL}/${authorId}/books/${bookId}`,  { headers });
   }
 
-  removeBook(studentId: number, courseId: number) {
+  getBooksByAuthorId(authorId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.delete<Teacher>(`${API_URL}teachers/${studentId}/courses/${courseId}`,  { headers });
-  } */
-
+    return this.http.get<Book[]>(`${environment.apiURL}/books/authors/${authorId}`, { headers });
+  }
 }

@@ -57,7 +57,7 @@ export class UserService {
   }
 
   loginUser(credentials: Credentials) {
-    return this.http.post<{ access_token: string }>(`${API_URL}/authenticate/`, credentials);
+    return this.http.post<{ access_token: string }>(`${environment.apiURL}/api/auth/authenticate`, credentials);
   }
 
   logoutUser() {
@@ -67,24 +67,12 @@ export class UserService {
   }
 
   registerUser(user: User) {
-    return this.http.post<{ access_token: string }>(`${API_URL}/signup/`, user);
+    return this.http.post<{ access_token: string }>(`${environment.apiURL}/api/auth/signup/`, user);
   }
 
   addUser(user: User) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     return this.http.post<User>(`${API_URL}/`, user, { headers });
-  }
-
-  addBookToUser(userId: number, bookId: number) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    const book = this.bookService.getBookById(bookId);
-    return this.http.put<User>(`${API_URL}/users/${userId}/addBooks/${bookId}`, book, { headers });
-  }
-
-  removeBookFromUser(userId: number, bookId: number) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    const book = this.bookService.getBookById(bookId);
-    return this.http.delete<User>(`${API_URL}/users/${userId}/removeBooks/${bookId}`);
   }
 
   updateUser(user: User) {
@@ -101,7 +89,7 @@ export class UserService {
 
   getUsers() {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<User[]>(`${API_URL}/users/`, { headers });
+    return this.http.get<User[]>(`${API_URL}/`, { headers });
   }
 
   getUserById(userId: number) {
@@ -117,6 +105,18 @@ export class UserService {
   getUserByEmail(email: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     return this.http.get<User>(`${API_URL}/${email}`, { headers });
+  }
+
+  addBookToUser(userId: number, bookId: number) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
+    const book = this.bookService.getBookById(bookId);
+    return this.http.put<User>(`${API_URL}/${userId}/addBooks/${bookId}`, book, { headers });
+  }
+
+  removeBookFromUser(userId: number, bookId: number) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
+    const book = this.bookService.getBookById(bookId);
+    return this.http.delete<User>(`${API_URL}/${userId}/removeBooks/${bookId}`);
   }
 
   getRole() {
@@ -145,7 +145,7 @@ export class UserService {
     return null; 
   }
 
-  /* async getUserId(): Promise<number> {
+  async getUserId(): Promise<number> {
     const token = localStorage.getItem('access_token');
     if (token) {
       const decodedToken = jwtDecode<{ sub: string, role: string }>(token);
@@ -163,5 +163,5 @@ export class UserService {
       }
     }
     return null;
- } */
+ }
 }

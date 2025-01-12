@@ -19,10 +19,10 @@ import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } 
     MatButtonModule,
     MatSelectModule,
     FormsModule],
-  templateUrl: './add-book.component.html',
-  styleUrl: './add-book.component.css'
+  templateUrl: './user-add-book.component.html',
+  styleUrl: './user-add-book.component.css'
 })
-export class AddBookComponent {
+export class UserAddBookComponent {
   userService = inject(UserService);
   router = inject(Router);
   route = inject(ActivatedRoute);
@@ -62,7 +62,7 @@ export class AddBookComponent {
         this.userService.addBookToUser(userId, bookToAdd.id).subscribe({
           next: () => {
             console.log('Book added successfully');
-            this.router.navigate(['/book-courses']); 
+            this.router.navigate(['/user-books']); 
           },
           error: (error: HttpErrorResponse) => {
             console.error('Error adding book:', error.message);
@@ -75,7 +75,7 @@ export class AddBookComponent {
   }
 
   goBack() {
-    this.router.navigate(['/book-courses', this.user.id]); 
+    this.router.navigate(['/user-books', this.user.id]); 
   }
 
 }

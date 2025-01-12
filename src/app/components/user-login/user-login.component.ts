@@ -31,7 +31,6 @@ export class UserLoginComponent {
         console.log('Full Response:', response);
         const accessToken = response.access_token;
         console.log('Access Token:', accessToken);
-
         try {
           localStorage.setItem('access_token', accessToken);
           const decodedToken = jwtDecode<{ sub: string, role: string }>(accessToken);
@@ -41,7 +40,6 @@ export class UserLoginComponent {
             role: decodedToken.role,
           });
 
-          // Redirect based on role
           this.redirectUser(decodedToken.role);
         } catch (error) {
           console.error('Token Decoding Error:', error);

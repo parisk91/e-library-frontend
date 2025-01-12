@@ -7,7 +7,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:e-library-frontend": "node dist/e-library-frontend/server/server.mjs",
     "deploy": "ng deploy --base-href=https://parisk91.github.io/e-library-frontend/"
   },
   "private": true,

@@ -51,12 +51,12 @@ export class UserTableComponent {
   updateUser(user: User) {
     this.router.navigate(['/update-user', user.id]);
   };
+
+  insertUser() {
+    this.router.navigate(['/insert-user']);
+  }
   
   goBack() {
     this.router.navigate(['/admin-dashboard']);
-  }
-   
-  insertUser() {
-    this.router.navigate(['/insert-user']);
   }
 }

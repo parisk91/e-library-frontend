@@ -18,7 +18,7 @@
           <td class="fw-semibold text-end">Biography:</td>
           <td class="ps-2">{{ author.biography }}</td>
           <td>
-            <button mat-flat-button role="button" color="primary" (click)="deleteAuthor(author)">Delete</button>
+            <button mat-flat-button role="button" color="primary" (click)="deleteAuthor(author.id)">Delete</button>
           </td>
           <td>
             <button mat-flat-button role="button" color="primary" (click)="updateAuthor(author)">Update</button>
