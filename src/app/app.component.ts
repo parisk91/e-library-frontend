@@ -8,8 +8,7 @@ import { ListMenuComponent } from './components/list-menu/list-menu.component';
     standalone: true,
     imports: [
               RouterOutlet,
-              NavbarComponent,
-              ListMenuComponent],
+              NavbarComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css'
 })

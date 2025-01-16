@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-user-table',
-    standalone: true,
+    standalone: true, 
     imports: [MatButtonModule, MatDividerModule, MatIconModule
     ],
     templateUrl: './user-table.component.html',

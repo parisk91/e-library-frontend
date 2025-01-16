@@ -1,4 +1,8 @@
-<form 
+@if (!author) {
+    <div class="alert alert-danger text-center">No author found!</div>
+    <button mat-flat-button color="primary" (click)="goBack()">Back</button>
+} @else {
+    <form 
     [formGroup]="form"
     class="d-flex flex-column">
     <mat-form-field>
@@ -10,8 +14,8 @@
         @if (form.get("firstname").invalid && form.get("firstname").touched) {
           <mat-error>Firstname is required</mat-error>
         }
-    </mat-form-field>
-    <mat-form-field>
+      </mat-form-field>
+      <mat-form-field>
         <mat-label>Lastname</mat-label>
         <input
           matInput
@@ -20,14 +24,15 @@
         @if (form.get("lastname").invalid && form.get("lastname").touched) {
           <mat-error>Lastname is required</mat-error>
         }
-    </mat-form-field>
-    <mat-form-field>
+      </mat-form-field>
+      <mat-form-field>
         <mat-label>Biography</mat-label>
         <input
           matInput
           type="text"
-          formControlName="biography" placeholder="Enter author biography"/>
-    </mat-form-field>
-</form>
-<button mat-flat-button role="button" color="primary" class="d-inline" (click)="insertAuthor()">Insert</button>
-<button mat-flat-button role="button" color="primary" class="d-inline m-lg-2" (click)="goBack()">Back</button> 
+          formControlName="biography" placeholder="Biography"/>
+      </mat-form-field>
+    </form>
+    <button mat-flat-button role="button" color="primary" class="d-inline" (click)="updateAuthor()">Update</button>
+    <button mat-flat-button role="button" color="primary" class="d-inline m-lg-2" (click)="goBack()">Back</button>
+}

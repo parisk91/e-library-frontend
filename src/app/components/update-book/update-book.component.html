@@ -1,0 +1,21 @@
+@if (!book) {
+    <div class="alert alert-danger text-center">No book found!</div>
+    <button mat-flat-button color="primary" (click)="goBack()">Back</button>
+} @else {
+    <form 
+    [formGroup]="form"
+    class="d-flex flex-column">
+    <mat-form-field>
+        <mat-label>Book</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="bookTitle" placeholder="Enter book title"/>
+        @if (form.get("bookTitle").invalid && form.get("bookTitle").touched) {
+          <mat-error>Book is required</mat-error>
+        }
+      </mat-form-field>
+    </form>
+    <button mat-flat-button role="button" color="primary" class="d-inline" (click)="updateBook()">Update</button>
+    <button mat-flat-button role="button" color="primary" class="d-inline m-lg-2" (click)="goBack()">Back</button>
+}

@@ -62,7 +62,7 @@ export class UserAddBookComponent {
         this.userService.addBookToUser(userId, bookToAdd.id).subscribe({
           next: () => {
             console.log('Book added successfully');
-            this.router.navigate(['/user-books']); 
+            this.router.navigate(['/book-table-for-user']); 
           },
           error: (error: HttpErrorResponse) => {
             console.error('Error adding book:', error.message);
@@ -75,7 +75,7 @@ export class UserAddBookComponent {
   }
 
   goBack() {
-    this.router.navigate(['/user-books', this.user.id]); 
+    this.router.navigate(['/book-table-for-user', this.user.id]); 
   }
 
 }

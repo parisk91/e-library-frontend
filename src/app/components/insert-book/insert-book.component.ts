@@ -9,7 +9,7 @@ import { BookService } from 'src/app/shared/services/book.service';
 
 @Component({
   selector: 'app-insert-book',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule, RouterLink],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, FormsModule],
   templateUrl: './insert-book.component.html',
   styleUrl: './insert-book.component.css'
 })
@@ -19,7 +19,10 @@ export class InsertBookComponent {
   book: Book;
 
   form = new FormGroup ({
-    title: new FormControl('', Validators.required)
+    title: new FormControl('', Validators.required),
+    quantity: new FormControl('', Validators.required),
+    description: new FormControl(''),
+    author: new FormControl
   })
 
 ngOnInit(): void {  
@@ -30,9 +33,9 @@ ngOnInit(): void {
       const newBook: Book = {
         title: this.form.value.title,
         id: 0,
-        author: undefined,
-        quantity: 0,
-        description: undefined
+        author: this.form.value.author,
+        quantity: Number(this.form.value.quantity),
+        description: this.form.value.description
 
       };
       this.bookService.addBook(newBook).subscribe({

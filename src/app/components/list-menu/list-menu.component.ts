@@ -11,8 +11,8 @@ import { MenuItems } from 'src/app/shared/interfaces/menu-items';
 })
 export class ListMenuComponent {
   menu: MenuItems[] = [
-    { text: 'Authors', routerLink: '../author-table'},
-    { text: 'Books', routerLink: '../book-table'},
+    { text: 'Authors Table', routerLink: '../author-table'},
+    { text: 'Books Table', routerLink: '../book-table'},
     { text: 'Users Table', routerLink: '../user-table'},
   ]
 

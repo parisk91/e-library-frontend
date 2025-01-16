@@ -25,14 +25,12 @@ export class UserDashboardComponent {
     this.userService.getUserByUsername(this.username).subscribe(
       (user: User) => {
         this.menu = [
-          { text: 'Personal Details', routerLink: `/update-user/${user.id}` },
-          { text: 'User Details', routerLink: `/update-user/${user.id}` },
-          { text: 'Book Table', routerLink: '/book-table'}
+          { text: 'User Details', routerLink: `/update-user-profile/${user.id}` },
+          { text: 'Books', routerLink: `/book-table-for-user/${user.id}`}
         ];
       },
       (error) => {
-        console.error('Error fetching user:', error);
-        
+        console.error('Error fetching user:', error);     
       }
     );
   }

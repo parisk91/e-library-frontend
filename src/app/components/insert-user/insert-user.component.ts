@@ -13,7 +13,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 @Component({
     selector: 'app-insert-user',
     standalone: true,
-    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, FormsModule, RouterLink],
+    imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, FormsModule],
     templateUrl: './insert-user.component.html',
     styleUrl: './insert-user.component.css'
 })

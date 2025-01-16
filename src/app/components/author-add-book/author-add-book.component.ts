@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Author } from 'src/app/shared/interfaces/author';
@@ -34,7 +33,7 @@ export class AuthorAddBookComponent {
         this.books = books;
       },
       error: (error: HttpErrorResponse) => {
-        console.error('Error fetching courses:', error.message);
+        console.error('Error fetching books:', error.message);
       }
     });
     const authorId = this.route.snapshot.params['id'];
@@ -69,7 +68,7 @@ export class AuthorAddBookComponent {
   }
 
   goBack() {
-    this.router.navigate(['/teacher-courses', this.author.id]); 
+    this.router.navigate(['/author-books', this.author.id]); 
   }
 
 }

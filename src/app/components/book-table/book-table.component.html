@@ -1,1 +1,33 @@
-<p>book-table works!</p>
+@if (!books.length) {
+    <div class="alert alert-danger text-center">No book found!</div>
+    <button mat-flat-button role="button" color="primary" (click)="insertBook()">Insert new Book</button>
+    <button mat-flat-button role="button" color="primary" (click)="goBack()">Back</button>
+  } @else {
+    <table class="table table-bordered">
+      <caption class="caption-top fw-bold bg-primary text-light text-center">
+        Books
+      </caption>
+      @for (book of books; track book) {
+        <tr>
+          <td class="fw-semibold text-end">Id:</td>
+          <td class="ps-2">{{ book.id }}</td>
+          <td class="fw-semibold text-end">Book:</td>
+          <td class="ps-2">{{ book.title }}</td>
+          <td>
+          <td class="fw-semibold text-end">Description:</td>
+          <td class="ps-2">{{ book.description }}</td>
+          <td>
+            <td class="fw-semibold text-end">Quantity:</td>
+          <td class="ps-2">{{ book.quantity }}</td>
+          <td>
+            <button mat-flat-button role="button" color="primary" (click)="deleteBook(book)">Delete</button>
+          </td>
+          <td>
+            <button mat-flat-button role="button" color="primary"(click)="updateBook(book)">Update</button>
+          </td>
+        </tr>
+      }
+    </table>
+    <button mat-flat-button role="button" color="primary" (click)="insertBook()">Insert new book</button>
+    <button mat-flat-button role="button" color="primary" (click)="goBack()">Back</button>
+  }

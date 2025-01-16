@@ -13,15 +13,15 @@
     Login
   </button>
   @if (invalidLogin) {
-    <div class="alert alert-danger">
+    <div class="alert alert-danger d-flex flex-column gap-3 text-wrap">
       <strong>Error:</strong>
       Invalid username or password. Click
-      <a role="button" routerLink="/register">
+      <a role="button" routerLink="/user-registration">
         here
       </a>
       to register
     </div>
   }
   <span>To create a new user <a role="button"
-    routerLink="/register">Click here!</a></span>
-</form>
+    routerLink="/user-registration">Click here!</a></span>
+</form> 

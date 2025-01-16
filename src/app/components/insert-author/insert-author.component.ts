@@ -10,11 +10,10 @@ import { Author } from 'src/app/shared/interfaces/author';
 import { Book } from 'src/app/shared/interfaces/book';
 import { User } from 'src/app/shared/interfaces/user';
 import { AuthorService } from 'src/app/shared/services/author.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-insert-author',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, FormsModule, RouterLink],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, FormsModule],
   templateUrl: './insert-author.component.html',
   styleUrl: './insert-author.component.css'
 })
@@ -33,7 +32,6 @@ export class InsertAuthorComponent {
 ngOnInit(): void {
   };
 
-
   insertAuthor() {
     if (this.form.valid) {
       const newAuthor: Author = {
@@ -43,6 +41,7 @@ ngOnInit(): void {
         id: 0,
         books: []
       };
+      
       this.authorService.addAuthor(newAuthor).subscribe({
         next: () => {
           console.log('Author inserted successfully');

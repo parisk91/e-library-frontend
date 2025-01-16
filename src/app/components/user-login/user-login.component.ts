@@ -56,11 +56,11 @@ export class UserLoginComponent {
 
   private redirectUser(role: string) {
     if (role === 'ADMIN') {
-      this.router.navigate(['admin-dashboard']);
+      this.router.navigate(['/admin-dashboard']);
     } else if (role === 'USER') {
-      this.router.navigate(['user-dashboard']);
+      this.router.navigate(['/user-dashboard']);
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
     }
   }
 }

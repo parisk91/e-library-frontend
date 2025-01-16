@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { Credentials, LoggedInUser, User } from '../interfaces/user';
+import { Credentials, LoggedInUser, User, UserWithBooks } from '../interfaces/user';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { BookService } from './book.service';
@@ -97,14 +97,19 @@ export class UserService {
     return this.http.get<User>(`${API_URL}/${userId}`, { headers });
   }
 
+  getUserWithBooksById(userId: number) {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
+    return this.http.get<UserWithBooks>(`${API_URL}/${userId}`, { headers });
+  }
+
   getUserByUsername(username: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<User>(`${API_URL}/${username}`, { headers });
+    return this.http.get<User>(`${API_URL}/username/${username}`, { headers });
   }
 
   getUserByEmail(email: string) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<User>(`${API_URL}/${email}`, { headers });
+    return this.http.get<User>(`${API_URL}/email/${email}`, { headers });
   }
 
   addBookToUser(userId: number, bookId: number) {

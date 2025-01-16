@@ -10,6 +10,27 @@
         @if (form.get("title").invalid && form.get("title").touched) {
           <mat-error>Book is required</mat-error>
         }
+        <mat-label>Quantity</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="quantity" placeholder="Enter book quantity"/>
+        @if (form.get("quantity").invalid && form.get("quantity").touched) {
+          <mat-error>Quantity is required</mat-error>
+        }
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="description" placeholder="Enter book description"/>
+        <mat-label>Book</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="author" placeholder="Enter book author"/>
+        @if (form.get("author").invalid && form.get("author").touched) {
+          <mat-error>Author is required</mat-error>
+        }
     </mat-form-field>
 </form>
 <button mat-flat-button role="button" color="primary" class="d-inline" (click)="insertBook()">Insert</button>

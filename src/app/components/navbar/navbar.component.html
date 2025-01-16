@@ -6,13 +6,13 @@
       <span class="me-3 d-flex gap-2 text-light">
         Welcome, {{ user().username }}
         <mat-icon role="button" (click)="logout()">
-          logout
+          Logout
         </mat-icon>
       </span>
     } @else {
       <span class="text-light me-3 d-flex gap-2 align-items-center">
         Login
-        <mat-icon role="button" class="icon-link-hover" routerLink="login">
+        <mat-icon role="button" class="icon-link-hover" routerLink="user-login">
           login
         </mat-icon>
       </span>

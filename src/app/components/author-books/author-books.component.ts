@@ -8,7 +8,6 @@ import { Author } from 'src/app/shared/interfaces/author';
 import { Book } from 'src/app/shared/interfaces/book';
 import { AuthorService } from 'src/app/shared/services/author.service';
 import { BookService } from 'src/app/shared/services/book.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-author-books',
