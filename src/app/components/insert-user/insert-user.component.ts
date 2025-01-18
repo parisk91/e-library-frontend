@@ -18,13 +18,12 @@ import { UserService } from 'src/app/shared/services/user.service';
     styleUrl: './insert-user.component.css'
 })
 export class InsertUserComponent {
-
     userService = inject(UserService);
     router = inject(Router);
     user: User;
 
     roles: Role[] = [
-        // {value: 'ADMIN', viewValue: 'ADMIN'},
+        {value: 'ADMIN', viewValue: 'ADMIN'},
         {value: 'USER', viewValue: 'USER'},
       ];
     

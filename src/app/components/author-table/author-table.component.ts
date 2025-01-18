@@ -34,11 +34,11 @@ export class AuthorTableComponent {
   deleteAuthor(authorId: number) {
     this.authorService.deleteAuthor(authorId).subscribe({
       next: () => {
-        this.authors = this.authors.filter(teacher => teacher !== teacher);
+        this.authors = this.authors.filter(author => author !== author);
         this.ngOnInit();
       },
       error: (error: HttpErrorResponse) => {
-        console.error('Error deleting teacher:', error.message);
+        console.error('Error deleting author:', error.message);
       }
     });
   }
@@ -46,10 +46,6 @@ export class AuthorTableComponent {
   updateAuthor(author: Author) {
     this.router.navigate(['/update-author', author.id]);
   };
-  
-  goBack() {
-    this.router.navigate(['/admin-dashboard']);
-  }
    
   insertAuthor() {
     this.router.navigate(['insert-author']);
@@ -58,5 +54,9 @@ export class AuthorTableComponent {
   getBooks(author: Author) {
     this.router.navigate(['/author-books', author.id]);
   };
+
+  goBack() {
+    this.router.navigate(['/admin-dashboard']);
+  }
 
 }

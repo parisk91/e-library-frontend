@@ -23,15 +23,18 @@
           matInput
           type="text"
           formControlName="description" placeholder="Enter book description"/>
-        <mat-label>Book</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="author" placeholder="Enter book author"/>
+        <mat-label>Author</mat-label>
+        <mat-select
+        formControlName="author">
+          @for (author of authors; track author) {
+            <mat-option [value]="author.id">{{author.lastname}}</mat-option>
+          }
+        </mat-select>
         @if (form.get("author").invalid && form.get("author").touched) {
           <mat-error>Author is required</mat-error>
         }
     </mat-form-field>
 </form>
+<button mat-flat-button role="button" color="primary" class="d-inline" (click)="insertNewAuthor()">Insert New Author</button>
 <button mat-flat-button role="button" color="primary" class="d-inline" (click)="insertBook()">Insert</button>
 <button mat-flat-button role="button" color="primary" class="d-inline m-lg-2" (click)="goBack()">Back</button>

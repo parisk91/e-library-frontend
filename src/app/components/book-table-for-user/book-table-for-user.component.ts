@@ -16,49 +16,57 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrl: './book-table-for-user.component.css'
 })
 export class BookTableForUserComponent {
-  bookService = inject(BookService);
-      books: Book[];
-      user: UserWithBooks;
-      router = inject(Router);
-      route = inject(ActivatedRoute);
-      userService = inject(UserService)
-  
-      @Input() book: Book | undefined;
-  
-      ngOnInit(): void {
-          const userId = this.route.snapshot.params['id'];
+    bookService = inject(BookService);
+    books: Book[];
+    user: UserWithBooks;
+    router = inject(Router);
+    route = inject(ActivatedRoute);
+    userService = inject(UserService)
 
-          const user = this.userService.getUserWithBooksById(userId)
+    @Input() book: Book | undefined;
 
-          this.userService.getUserWithBooksById(userId).subscribe({
-          next: (books) => {
-              this.books = this.user.books;
-          },
-          error: (error: HttpErrorResponse) => {
-              console.error('Error fetching books:', error.message);
-          }
-          });
-      }
+    ngOnInit(): void {
+        const userId = this.route.snapshot.params['id'];
+
+        this.userService.getUserWithBooksById(userId).subscribe({
+            next: (user) => {
+                this.user = user;
+            },
+            error: (error: HttpErrorResponse) => {
+                console.error('Error fetching user:', error.message);
+            }
+            });
+
+        this.userService.getUserWithBooksById(userId).subscribe({
+        next: (user) => {
+            this.books = user.books;
+        },
+        error: (error) => {
+            console.log('Error fetching books:', error)
+        }
+        })
+    }
   
-      deleteBook(book: Book) {
-          this.bookService.deleteBook(book).subscribe({
-          next: () => {
-              this.books = this.books.filter(book => book.id !== book.id);
-              this.ngOnInit();
-          },
-          error: (error: HttpErrorResponse) => {
-              console.error('Error deleting book:', error.message);
-          }
-          });
-      }
+    removeBook(book: Book) {
+        const userId = this.route.snapshot.params['id'];
+        this.userService.removeBookFromUser(userId,book.id).subscribe({
+        next: () => {
+            this.books = this.books.filter(book => book !== book);
+            this.ngOnInit();
+        },
+        error: (error: HttpErrorResponse) => {
+            console.error('Error removing book:', error.message);
+        }
+        });
+    }
       
-      goBack() {
-          this.router.navigate(['/user-dashboard']);
-          }
+    goBack() {
+        this.router.navigate([`/user-dashboard/${this.user.id}`]);
+        }
       
-      addBook() {
-          this.router.navigate(['user-add-book']);
-      }   
+    addBook(user: UserWithBooks) {
+        this.router.navigate([`/user-add-book/${this.user.id}`]);
+    }   
 }
 
 

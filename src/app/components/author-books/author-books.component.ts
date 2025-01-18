@@ -11,7 +11,7 @@ import { BookService } from 'src/app/shared/services/book.service';
 
 @Component({
   selector: 'app-author-books',
-  imports: [MatButtonModule, MatDividerModule, MatIconModule, RouterLink],
+  imports: [MatButtonModule, MatDividerModule, MatIconModule],
   templateUrl: './author-books.component.html',
   styleUrl: './author-books.component.css'
 })

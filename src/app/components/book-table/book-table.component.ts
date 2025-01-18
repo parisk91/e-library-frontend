@@ -49,16 +49,16 @@ export class BookTableComponent {
     updateBook(book: Book) {
         this.router.navigate(['/update-book', book.id]);
     };
+
+    insertBook() {
+        this.router.navigate(['insert-book']);
+    }
     
     goBack() {
         if (this.userService.getRole() === "ADMIN") {
         this.router.navigate(['/admin-dashboard']);
         } else {
-        this.router.navigate(['user-dashboard/']);
+        this.router.navigate(['user-login/']);
         }
-    }
-    
-    insertBook() {
-        this.router.navigate(['insert-book']);
     }
 }

@@ -1,4 +1,4 @@
-@if (!users.length) {
+@if (!users) {
     <div class="alert alert-danger text-center">No user found!</div>
     <button mat-flat-button role="button" color="primary" (click)="insertUser()">Insert new user</button>
     <button mat-flat-button role="button" color="primary" (click)="goBack()">Back</button>

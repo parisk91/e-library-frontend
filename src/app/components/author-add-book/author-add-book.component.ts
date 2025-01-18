@@ -11,7 +11,7 @@ import { BookService } from 'src/app/shared/services/book.service';
 
 @Component({
   selector: 'app-author-add-book',
-  imports: [ReactiveFormsModule, MatButtonModule, MatSelectModule, FormsModule, RouterLink],
+  imports: [ReactiveFormsModule, MatButtonModule, MatSelectModule, FormsModule],
   templateUrl: './author-add-book.component.html',
   styleUrl: './author-add-book.component.css'
 })

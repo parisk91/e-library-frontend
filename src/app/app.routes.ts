@@ -17,6 +17,8 @@ import { UpdateAuthorComponent } from './components/update-author/update-author.
 import { UpdateBookComponent } from './components/update-book/update-book.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserAddBookComponent } from './components/user-add-book/user-add-book.component';
+import { AuthorBooksComponent } from './components/author-books/author-books.component';
+import { AuthorAddBookComponent } from './components/author-add-book/author-add-book.component';
 
 export const routes: Routes = [
     { path: '', redirectTo:'/user-login', pathMatch:'full'},
@@ -27,15 +29,18 @@ export const routes: Routes = [
     { path: 'user-table', component: UserTableComponent},
     { path: 'author-table', component: AuthorTableComponent},
     { path: 'book-table', component: BookTableComponent},
-    { path: 'book-table-for-user', component: BookTableForUserComponent},
+    { path: 'book-table-for-user/:id', component: BookTableForUserComponent},
     { path: 'insert-user', component: InsertUserComponent},
     { path: 'insert-author', component: InsertAuthorComponent},
     { path: 'insert-book', component: InsertBookComponent},
-    { path: 'update-author', component: UpdateAuthorComponent},
-    { path: 'update-book', component: UpdateBookComponent},
-    { path: 'update-user', component: UpdateUserComponent},
-    { path: 'update-user-profile', component: UpdateUserComponent}, 
-    { path: 'user-add-book', component: UserAddBookComponent},
+    { path: 'update-author/:id', component: UpdateAuthorComponent},
+    { path: 'update-book/:id', component: UpdateBookComponent},
+    { path: 'update-user/:id', component: UpdateUserComponent},
+    { path: 'update-user-profile:/id', component: UpdateUserComponent}, 
+    { path: 'user-add-book/:id', component: UserAddBookComponent},
+    { path: 'author-books/:id', component: AuthorBooksComponent},
+    { path: 'author-add-book:/id', component: AuthorAddBookComponent},
+
     { path: 'admin-dashboard', component: AdminDashboardComponent, data:{expectedRole: 'ADMIN'}, canActivate: [authGuard]},
     { path: 'user-dashboard', component: UserDashboardComponent, data:{expectedRole: 'USER'}, canActivate: [authGuard]}
 ];

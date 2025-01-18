@@ -12,7 +12,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-update-user-profile',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, FormsModule, RouterLink],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatSelectModule, FormsModule],
   templateUrl: './update-user-profile.component.html',
   styleUrl: './update-user-profile.component.css'
 })
@@ -72,7 +72,7 @@ export class UpdateUserProfileComponent {
         this.userService.updateUser(updateUser).subscribe({
           next: () => {
             console.log('User updates successfully');
-              this.router.navigate(['/user-table']);
+              this.router.navigate(['/user-dashboard']);
           },
           error: (error: HttpErrorResponse) => {
             console.error('Error updating user:', error.message);
