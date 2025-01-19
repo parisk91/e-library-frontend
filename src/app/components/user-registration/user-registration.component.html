@@ -1,55 +1,54 @@
 <h4>User Registration</h4>
 
 @if (registrationStatus.message === "Not attempted yet") {
-  <form [formGroup]="userForm" class="d-flex flex-column">
-    <mat-form-field>
-        <mat-label>Username</mat-label>
-        <input matInput type="text" formControlName="username" />
-        <mat-error>Username is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" />
-        <mat-error>Password is missing or invalid</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Confirm Password</mat-label>
-      <input matInput type="password" formControlName="confirmPassword" />
-      @if (userForm.get("confirmPassword").hasError("passwordMismatch")) {
-        <mat-error>Passwords do not match</mat-error>
-      } @else {
-        @if (
-          userForm.get("confirmPassword").invalid &&
-          userForm.get("confirmPassword").touched
-        ) {
-          <mat-error>Password is missing or invalid</mat-error>
-        }
-      }
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="email" (blur)="checkDuplicateEmail()">
-        @if(userForm.get('email')?.hasError("duplicateEmail")) {
-          <mat-error>Email is already in use</mat-error>
+  <div class="d-flex flex-column mt-2 w-50">
+    <form [formGroup]="userForm" class="d-flex flex-column">
+      <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username"/>
+          <mat-error>Username is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+          <mat-error>Password is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        @if (userForm.get("confirmPassword")?.hasError("passwordMismatch")) {
+          <mat-error>Passwords do not match</mat-error>
         } @else {
-          <mat-error>Email is missing</mat-error>
+          @if (
+            userForm.get("confirmPassword").invalid &&
+            userForm.get("confirmPassword").touched
+          ) {
+            <mat-error>Password is missing or invalid</mat-error>
+          }
         }
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Choose a user role</mat-label>
-      <mat-select formControlName="role">
-        @for (role of roles; track role) {
-          <mat-option [value]="role.value">{{role.viewValue}}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
-    <button mat-flat-button color="primary" [disabled]="userForm.invalid" (click)="onSubmit(userForm.value)">
-      Register
-    </button>
-  </form>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email" (blur)="checkDuplicateEmail()">
+          @if(userForm.get('email')?.hasError("duplicateEmail")) {
+            <mat-error>Email is already in use</mat-error>
+          } @else {
+            <mat-error>Email is missing</mat-error>
+          }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose a user role</mat-label>
+        <mat-select formControlName="role">
+          @for (role of roles; track role) {
+            <mat-option [value]="role.value">{{role.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <button mat-flat-button color="primary" [disabled]="userForm.invalid" (click)="onSubmit(userForm.value)">
+        Register
+      </button>
+    </form>
+  </div>
 } @else {
   @if (registrationStatus.success) {
     <div class="alert alert-success mt-2 w-50">

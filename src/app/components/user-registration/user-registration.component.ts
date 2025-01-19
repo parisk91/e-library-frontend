@@ -58,11 +58,10 @@ export class UserRegistrationComponent {
       userForm.get('confirmPassword').setErrors({ passwordMismatch: true });
       return { passwordMismatch: true };
     }
-    return {};
+    return null;
   }
 
   onSubmit(value: any) {
-  
     console.log(value);
     this.checkOnSubmit();
   }
@@ -75,12 +74,12 @@ export class UserRegistrationComponent {
   checkDuplicateEmail() {
     const email = this.userForm.get('email')?.value
     if (email) {
-      this.userService.getUserByEmail(email).subscribe({
+      this.userService.checkEmail(email).subscribe({
         next: (response) => {
-          console.log(response.email)
+          console.log(response)
           this.userForm.get('email')?.setErrors(null)},
         error: (response) => {
-          console.log(response)
+          console.log("Exists " + response)
           this.userForm.get('email')?.setErrors({duplicateEmail: true})
         }
       })
@@ -90,17 +89,21 @@ export class UserRegistrationComponent {
   checkOnSubmit() {
     const email = this.userForm.get('email')?.value
 
-    const user = this.userForm.value as User;
-    delete user['confirmPassword'];
+    const user : User = {
+      id: null, 
+      username: this.userForm.get('username')?.value || '',
+      role: this.userForm.get('role')?.value || '',
+      email: this.userForm.get('email')?.value || '',
+      password: this.userForm.get('password')?.value || ''
+    }
 
     if(email) {
-      this.userService.getUserByEmail(email).subscribe({
+      this.userService.checkEmail(email).subscribe({
         next: (response) => {
           this.userService.registerUser(user).subscribe({
             next: (response) => {
               console.log('User registered', response);
               this.registrationStatus = { success: true, message: "Success" };
-              const token = response.access_token;
             },
             error: (response) => {
               console.log('Error registering user', response);
@@ -109,7 +112,7 @@ export class UserRegistrationComponent {
           })
         },
         error: (response) => {
-          console.log("WRONG", response.error)
+          console.log("WRONG", response)
         }
       })
     }  
