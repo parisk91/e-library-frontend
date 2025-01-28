@@ -6,7 +6,7 @@
         <input
           matInput
           type="text"
-          formControlName="firstname" placeholder="Enter teacher firstname"/>
+          formControlName="firstname" placeholder="Enter author firstname"/>
         @if (form.get("firstname").invalid && form.get("firstname").touched) {
           <mat-error>Firstname is required</mat-error>
         }
@@ -16,7 +16,7 @@
         <input
           matInput
           type="text"
-          formControlName="lastname" placeholder="Enter teacher lastname"/>
+          formControlName="lastname" placeholder="Enter author lastname"/>
         @if (form.get("lastname").invalid && form.get("lastname").touched) {
           <mat-error>Lastname is required</mat-error>
         }

@@ -36,7 +36,7 @@ export const routes: Routes = [
     { path: 'update-author/:id', component: UpdateAuthorComponent},
     { path: 'update-book/:id', component: UpdateBookComponent},
     { path: 'update-user/:id', component: UpdateUserComponent},
-    { path: 'update-user-profile:/id', component: UpdateUserComponent}, 
+    { path: 'update-user-profile/:id', component: UpdateUserComponent}, 
     { path: 'user-add-book/:id', component: UserAddBookComponent},
     { path: 'author-books/:id', component: AuthorBooksComponent},
     { path: 'author-add-book:/id', component: AuthorAddBookComponent},

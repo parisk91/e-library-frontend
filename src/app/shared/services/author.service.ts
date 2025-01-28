@@ -46,13 +46,13 @@ export class AuthorService {
 
   deleteAuthor(authorId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.delete<Author>(`${API_URL}/${authorId}`, { headers });
+    return this.http.delete< {msg: string} >(`${API_URL}/${authorId}`, { headers });
   }
 
   addBookToAuthor(authorId: number, bookId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     const book = this.bookService.getBookById(bookId);
-    return this.http.put<Author>(`${API_URL}/${authorId}/books/${bookId}`, book, { headers });
+    return this.http.put<Author>(`${API_URL}/${authorId}/authors/${bookId}`, book, { headers });
   }
 
   removeBookFromAuthor(authorId: number, bookId: number) {

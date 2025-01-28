@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { Author } from 'src/app/shared/interfaces/author';
 import { Book } from 'src/app/shared/interfaces/book';
 import { AuthorService } from 'src/app/shared/services/author.service';
@@ -28,10 +28,10 @@ export class InsertBookComponent {
     title: new FormControl('', Validators.required),
     quantity: new FormControl('', Validators.required),
     description: new FormControl(''),
-    author: new FormControl
+    author: new FormControl(Validators.required)
   })
 
-ngOnInit(): void { 
+ngOnInit(): any { 
   this.authorService.getAuthors().subscribe({
     next: (authors) => {
       this.authors = authors;

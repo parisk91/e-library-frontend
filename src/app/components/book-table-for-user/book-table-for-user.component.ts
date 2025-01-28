@@ -61,7 +61,7 @@ export class BookTableForUserComponent {
     }
       
     goBack() {
-        this.router.navigate([`/user-dashboard/${this.user.id}`]);
+        this.router.navigate([`/user-dashboard`]);
         }
       
     addBook(user: UserWithBooks) {

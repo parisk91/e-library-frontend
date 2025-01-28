@@ -1,9 +1,23 @@
-import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
+    const excludedUrls = ['/api/auth/signUp', '/api/auth/authenticate'];
+
+    // Check if the current request URL matches an excluded URL
+    const isExcluded = excludedUrls.some(url => req.url.includes(url));
+
+    if (isExcluded) {
+      // Do not modify the request
+      return next.handle(req);
+    }
+    /* if (req.url.includes('api/auth/signup')) {
+      return next.handle(req);
+    } */
+
     const authToken = localStorage.getItem('access_token')
     console.log('Retrieved Token:', authToken);
     if (!authToken) {
@@ -21,5 +35,5 @@ export class AuthInterceptorService implements HttpInterceptor {
     });
     return next.handle(authRequest)
   }
-}
+} 
 

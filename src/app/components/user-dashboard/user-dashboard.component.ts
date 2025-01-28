@@ -25,7 +25,7 @@ export class UserDashboardComponent {
     this.userService.getUserByUsername(this.username).subscribe(
       (user: User) => {
         this.menu = [
-          { text: 'User Details', routerLink: `/update-user-profile/${user.id}` },
+          { text: 'User Details', routerLink: `/update-user-profile/${user.id}`},
           { text: 'Books', routerLink: `/book-table-for-user/${user.id}`}
         ];
       },

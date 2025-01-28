@@ -30,7 +30,7 @@ export class BookService {
   deleteBook(book: Book) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     const id = book.id
-    return this.http.delete<Book>(`${API_URL}/${id}`, { headers });
+    return this.http.delete<{msg: string}>(`${API_URL}/${id}`, { headers });
   }
 
   getBooks() {

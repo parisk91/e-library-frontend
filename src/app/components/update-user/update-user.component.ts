@@ -83,6 +83,10 @@ export class UpdateUserComponent {
   }
 
   goBack() {
-      this.router.navigate(['/user-table']);
+    if (this.user.role === 'ADMIN') {
+      this.router.navigate(['/user-table']); 
+    } else {
+      this.router.navigate(['/user-dashboard']); 
+    }
   }
 }

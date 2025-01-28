@@ -5,7 +5,6 @@ import { Credentials, LoggedInUser, User, UserWithBooks } from '../interfaces/us
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { BookService } from './book.service';
-import { map } from 'rxjs';
 
 const API_URL = `${environment.apiURL}/users`;
 
@@ -64,11 +63,15 @@ export class UserService {
   logoutUser() {
     this.user.set(null);
     localStorage.removeItem('access_token');
-    this.router.navigate(['login']);
+    this.router.navigate(['user-login']);
   }
 
   registerUser(user: User) {
-    return this.http.post<{ msg: string }>(`${environment.apiURL}/api/auth/signup`, user);
+    return this.http.post<{ msg: string }>(`${environment.apiURL}/api/auth/signUp`, user);
+  }
+
+  checkEmail(email: string) {
+    return this.http.get<{ msg: string }>(`${environment.apiURL}/api/public/check-email/${email}`);
   }
 
   addUser(user: User) {
@@ -90,7 +93,7 @@ export class UserService {
 
   getUsers() {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<User[]>(`${API_URL}/`, { headers });
+    return this.http.get<User[]>(`${API_URL}`, { headers });
   }
 
   getUserById(userId: number) {
@@ -113,10 +116,6 @@ export class UserService {
     return this.http.get<User>(`${API_URL}/email/${email}`, { headers });
   }
 
-  checkEmail(email: string) {
-    return this.http.get<{ msg: string }>(`${environment.apiURL}/api/public/check-email/${email}`);
-  }
-
   addBookToUser(userId: number, bookId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     const book = this.bookService.getBookById(bookId);
@@ -126,7 +125,7 @@ export class UserService {
   removeBookFromUser(userId: number, bookId: number) {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     const book = this.bookService.getBookById(bookId);
-    return this.http.delete<User>(`${API_URL}/${userId}/removeBooks/${bookId}`);
+    return this.http.delete<User>(`${API_URL}/${userId}/removeBooks/${bookId}`, { headers });
   }
 
   getRole() {
