@@ -20,7 +20,7 @@ export class InsertBookComponent {
   bookService = inject(BookService);
   router = inject(Router);
   book: Book;
-  author: Author;
+  author: String;
   authorService: AuthorService;
   authors: Author[];
 
@@ -28,7 +28,7 @@ export class InsertBookComponent {
     title: new FormControl('', Validators.required),
     quantity: new FormControl('', Validators.required),
     description: new FormControl(''),
-    author: new FormControl(Validators.required)
+    author: new FormControl('',Validators.required)
   })
 
 ngOnInit(): any { 

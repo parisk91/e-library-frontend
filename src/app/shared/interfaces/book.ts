@@ -5,5 +5,5 @@ export interface Book {
     title: string,
     description: string,
     quantity: number,
-    author: Author
+    author: String
 }
